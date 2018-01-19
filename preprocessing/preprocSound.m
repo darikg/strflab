@@ -95,7 +95,10 @@ function [wholeStim, groupIndex, stimInfo, params] = preprocSound(audioWaveforms
     %% read .wav files if they're specified instead of audio waveforms
     for k = 1:length(audioWaveforms)        
         if ischar(audioWaveforms{k})
-            [adata, sRate, depth] = wavread(audioWaveforms{k});            
+            %[adata, sRate, depth] = wavread(audioWaveforms{k});            
+            [adata, sRate] = audioread(audioWaveforms{k});
+            info_ = audioinfo(audioWaveforms{k});
+            depth = info_.BitsPerSample;
             audioWaveforms{k} = adata;
             params.rawSampleRate = sRate;
         end        
