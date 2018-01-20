@@ -1,4 +1,4 @@
-function [strf,varargout]=strfFwd(strf,datIdx)
+function [strf,varargout]=strfFwd(strf,datIdx,strfDat)
 %function [strf,varargout]=strfFwd(strf,datIdx)
 %
 % Gets predicted response for a stimulus and STRF model. 
@@ -16,10 +16,17 @@ function [strf,varargout]=strfFwd(strf,datIdx)
 %
 %(Some code modified from NETLAB)
 
+global globDat
+
+if nargin<3
+    % Backwards compat
+    strfDat = globDat;
+end
+    
 
 
 fwdstr = [strf.type, 'Fwd'];
-[s{1:nargout}]=feval(fwdstr,strf,datIdx);
+[s{1:nargout}]=feval(fwdstr,strf,datIdx,strfDat);
 
 strf = s{1};
 

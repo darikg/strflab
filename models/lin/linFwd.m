@@ -1,4 +1,4 @@
-function [strf,resp_strf_dat,a_dat]=linFwd(strf,datIdx)
+function [strf,resp_strf_dat,a_dat]=linFwd(strf,datIdx,strf_data)
 % function [strf,resp_strf_dat,a_dat] = linFwdFaster(strf, datIdx)
 %  
 % Forward propagation through generalized linear model.
@@ -27,11 +27,10 @@ function [strf,resp_strf_dat,a_dat]=linFwd(strf,datIdx)
 %
 %(Some code modified from NETLAB)
 
-global globDat;
 
-samplesize = globDat.nSample;
+samplesize = strf_data.nSample;
 
-if strf.internal.compFwd == 0 & samplesize == length(strf.internal.prevResp) & strf.internal.dataHash == globDat.dataHash
+if strf.internal.compFwd == 0 & samplesize == length(strf.internal.prevResp) & strf.internal.dataHash == strf_data.dataHash
 	resp_strf_dat = strf.internal.prevResp(datIdx);
 	a_dat = strf.internal.prevLinResp(datIdx);
 	return
@@ -40,7 +39,7 @@ end
 
 a = zeros(samplesize, 1);
 for ti=1:length(strf.delays)
-  at = globDat.stim * strf.w1(:,ti);
+  at = strf_data.stim * strf.w1(:,ti);
 
   thisshift = strf.delays(ti);
   if thisshift>=0
@@ -89,7 +88,7 @@ switch strf.outputNL
 end
 
 % mask for nonvalid frames
-nanmask = mod(strf.delays, size(globDat.stim,1)+1);
+nanmask = mod(strf.delays, size(strf_data.stim,1)+1);
 nanmask = nanmask(find(nanmask)); % no mask for delay 0
 a(nanmask) = NaN;
 resp_strf(nanmask) = NaN;
@@ -101,4 +100,4 @@ a_dat = a(datIdx);
 strf.internal.compFwd = 0;
 strf.internal.prevResp = resp_strf;
 strf.internal.prevLinResp = a;
-strf.internal.dataHash = globDat.dataHash;
+strf.internal.dataHash = strf_data.dataHash;
