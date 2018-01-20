@@ -29,14 +29,14 @@ function DS = sr2df(srData, outputPath)
         %write spectrogram to intermediate file (direct fit requires this)
         stimfile = fullfile(outputPath, sprintf('df_temp_stim_%d.mat', k));
         outSpectrum = srds.stim.tfrep.spec;
-        save(stimfile, 'outSpectrum');
+        save(stimfile, 'outSpectrum', strf_save_ver());
         clear outSpectrum;        
         dfds.stimfiles = stimfile;
         
         %write response to intermediate file
         rfile = fullfile(outputPath, sprintf('df_temp_resp_%d.mat', k));
         rawResp = srds.resp.rawSpikeIndicies;
-        save(rfile, 'rawResp');
+        save(rfile, 'rawResp', strf_save_ver());
         clear rawResp;
         dfds.respfiles = rfile;
         

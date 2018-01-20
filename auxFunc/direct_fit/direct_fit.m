@@ -32,8 +32,8 @@ if (split_data_set)
      partI = stim_env(:, 1:floor(0.9*oldLength));
      partII = stim_env(:, floor(0.9*oldLength)+1:oldLength);
      [p, sn, se] = fileparts(DS{1}.stimfiles);
-     save(fullfile(outputPath,['partI_' sn,'.mat']), 'partI');
-     save(fullfile(outputPath,['partII_' sn, '.mat']), 'partII');
+     save(fullfile(outputPath,['partI_' sn,'.mat']), 'partI', strf_save_ver());
+     save(fullfile(outputPath,['partII_' sn, '.mat']), 'partII', strf_save_ver());
 
      DS{1}.stimfiles = fullfile(p, ['partI_', sn, '.mat']);
      predDS{1}.stimfiles = fullfile(p, ['partII_', sn, '.mat']);
@@ -48,8 +48,8 @@ if (split_data_set)
      partI = psth_rec(:, 1:floor(0.9*oldLength));
      partII = psth_rec(:, floor(0.9*oldLength)+1:oldLength);
 
-     save(fullfile(outputPath,['partI_', rn, '.mat']), 'partI');
-     save(fullfile(outputPath,['partII_', rn, '.mat']), 'partII');
+     save(fullfile(outputPath,['partI_', rn, '.mat']), 'partI', strf_save_ver());
+     save(fullfile(outputPath,['partII_', rn, '.mat']), 'partII', strf_save_ver());
 
      DS{1}.respfiles = fullfile(p, ['partI_', rn, '.mat']);
      predDS{1}.respfiles = fullfile(p, ['partII_', rn, '.mat']);
@@ -127,7 +127,7 @@ if setSep == 0  % Nonseparable space-time algorithm
         outputPath = pwd;
     end
 
-    save('Stim_autocorr.mat', 'CS');
+    save('Stim_autocorr.mat', 'CS', strf_save_ver());
     cd(currentPath);
 
     % Check if df_cal_AutoCorr ends normally
@@ -161,8 +161,8 @@ if setSep == 0  % Nonseparable space-time algorithm
     if ~strcmp(cached_dir,'null')
         %[CSR, CSR_JN, errFlg]= do_cached_calc_checksum_known('df_cal_CrossCorr',checksum_CrossCorr,DS,stim_avg,avg_psth,psth,twindow,NBAND);
         [CSR, CSR_JN, errFlg]= df_do_locally_cached_calc_checksum_known(df_get_local_cache_dir,'df_cal_CrossCorr',checksum_CrossCorr,DS,stim_avg,avg_psth,psth,twindow,NBAND);
-        save(fullfile(outputPath,'StimResp_crosscorr.mat'), 'CSR');
-        save(fullfile(outputPath,'SR_crosscorrJN.mat'), 'CSR_JN');
+        save(fullfile(outputPath,'StimResp_crosscorr.mat'), 'CSR', strf_save_ver());
+        save(fullfile(outputPath,'SR_crosscorrJN.mat'), 'CSR_JN', strf_save_ver());
     else
         [CSR, CSR_JN, errFlg]= df_cal_CrossCorr(DS,stim_avg,avg_psth,...
             psth,twindow,NBAND);
@@ -242,8 +242,8 @@ else % Separable space-time algorithm
 
     if cache_crosscorr 
         [CSR, CSR_JN, errFlg]= df_do_locally_cached_calc_checksum_known(df_get_local_cache_dir,'df_cal_CrossCorr',checksum_CrossCorr,DS,stim_avg,avg_psth,psth,twindow,NBAND);
-        save(fullfile(outputPath,'StimResp_crosscorr.mat'), 'CSR');
-        save(fullfile(outputPath,'SR_crosscorrJN.mat'), 'CSR_JN');
+        save(fullfile(outputPath,'StimResp_crosscorr.mat'), 'CSR', strf_save_ver());
+        save(fullfile(outputPath,'SR_crosscorrJN.mat'), 'CSR_JN', strf_save_ver());
     else
 
         [CSR, CSR_JN, errFlg]= df_cal_CrossCorr(DS,stim_avg,avg_psth,...

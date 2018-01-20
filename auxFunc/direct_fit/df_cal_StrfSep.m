@@ -126,7 +126,7 @@ else
     [u,s,v] = df_do_cached_calc('svd',tCStime);
     original_time_subspace_checksum = the_checksum;
     original_subspace_tol_vals = Tol_val;
-    save(fullfile(outputPath,'subspace.mat'),'original_subspace_tol_vals','original_time_subspace_checksum');
+    save(fullfile(outputPath,'subspace.mat'),'original_subspace_tol_vals','original_time_subspace_checksum', strf_save_ver());
 end
 
 tots = s(1,1);
@@ -262,12 +262,12 @@ if save_flag == 1
         outputPath = pwd;
     end
 
-    save('strfH.mat', 'strfH');
-    save('strfH_std.mat', 'strfHJN_std');
+    save('strfH.mat', 'strfH', strf_save_ver());
+    save('strfH_std.mat', 'strfHJN_std', strf_save_ver());
     for iJN=1:nJN
         filename = sprintf('strfHJN%d.mat',iJN);  
         strfHJN_nJN = strfHJN(:,:,iJN); 
-        save(filename, 'strfHJN_nJN');
+        save(filename, 'strfHJN_nJN', strf_save_ver());
     end
     cd(currentPath);
 end

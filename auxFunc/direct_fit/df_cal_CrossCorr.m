@@ -234,8 +234,8 @@ else
     outputPath = pwd;
 end
 
-save('StimResp_crosscorr.mat', 'CSR');  
-save('SR_crosscorrJN.mat', 'CSR_JN');
+save('StimResp_crosscorr.mat', 'CSR', strf_save_ver());  
+save('SR_crosscorrJN.mat', 'CSR_JN', strf_save_ver());
 cd(currentPath);
 
 % ========================================================

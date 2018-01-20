@@ -149,7 +149,7 @@ else
     outputPath = pwd;
 end
 
-save('Stim_autocorr.mat', 'CSspace', 'CStime'); 
+save('Stim_autocorr.mat', 'CSspace', 'CStime', strf_save_ver()); 
 cd(currentPath);
 % ========================================================
 % END OF CAL_AUTOCORRSEP

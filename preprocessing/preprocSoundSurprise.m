@@ -117,6 +117,6 @@ function [surpriseStimLouder, surpriseStimQuieter, groupIndex, stimInfo, params]
     stimInfo = struct;
     
     if params.cache
-        save(outputFileName, 'surpriseStimLouder', 'surpriseStimQuieter', 'groupIndex', 'stimInfo', 'params');
+        save(outputFileName, 'surpriseStimLouder', 'surpriseStimQuieter', 'groupIndex', 'stimInfo', 'params', strf_save_ver());
     end
     

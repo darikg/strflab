@@ -4,7 +4,7 @@ done = 0;
 while done == 0
     tempfile = fullfile(getenv('TMP'),['Temp_hashing_name_' num2str(testnum) '.tmp']);
     if ~exist(tempfile,'file')
-        %save(tempfile,'varargin');
+        %save(tempfile,'varargin', strf_save_ver());
         A = ver('MATLAB');
         A = A.Version;
         A = str2num(A(1));

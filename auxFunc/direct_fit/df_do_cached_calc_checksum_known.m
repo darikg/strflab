@@ -50,7 +50,7 @@ else
             if ~isfield(loaded,'cached_no_args') %Backwards compatability w/ a spelling mistake
                 loaded.cached_no_args = loaded.cashed_no_args;
                 cached_no_args = loaded.cashed_no_args;
-                save(filename,'cached_no_args','-APPEND');
+                save(filename,'cached_no_args','-APPEND', strf_save_ver());
             end
             if loaded.cached_no_args >= nargout
                 %disp(['Score one for caching: we don''t have to evaluate the function ' function_name ' since its output has been cached.']);
@@ -156,7 +156,7 @@ else
             try
                 if ~exist(the_filename,'file')
                     disp(['Saving the results from evaluating function ' function_name ' for future use.'])
-                    save(the_filename,'out*','cached_no_args','cashed_no_args');  %Backwards compatability w/ a spelling mistake
+                    save(the_filename,'out*','cached_no_args','cashed_no_args', strf_save_ver());  %Backwards compatability w/ a spelling mistake
                     add_record_to_cache(cached_dir,the_checksum,time_saved,function_name,the_filename);
                 else
                     t_loaded = load(the_filename);
@@ -164,7 +164,7 @@ else
                         disp(['I was going to save the results from evaluating function ' function_name ', but another process has beatme to it.']);
                     else
                         disp(['Although function ' function_name ' has been evaluated before with exactly the same inputs, now more outputs have been requested, so I''m caching them all.']);
-                        save(the_filename,'out*','cached_no_args','cashed_no_args');  %Backwards compatability w/ a spelling mistake
+                        save(the_filename,'out*','cached_no_args','cashed_no_args', strf_save_ver());  %Backwards compatability w/ a spelling mistake
                         add_record_to_cache(cached_dir,the_checksum,time_saved,function_name,the_filename);
                     end
                 end

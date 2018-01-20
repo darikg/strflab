@@ -347,12 +347,12 @@ if save_flag == 1
         outputPath = pwd;
     end
 
-    save('strfH.mat', 'strfH');
-    save('strfH_std.mat', 'strfHJN_std');
+    save('strfH.mat', 'strfH', strf_save_ver());
+    save('strfH_std.mat', 'strfHJN_std', strf_save_ver());
     for iJN=1:nJN
         filename = sprintf('strfHJN%d.mat',iJN);
         strfHJN_nJN = strfHJN(:,:,iJN);
-        save(filename, 'strfHJN_nJN');
+        save(filename, 'strfHJN_nJN', strf_save_ver());
     end
     cd(currentPath);
 end

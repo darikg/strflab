@@ -219,7 +219,7 @@ else
     outputPath = pwd;
 end
 
-save('Stim_autocorr.mat', 'CS');
+save('Stim_autocorr.mat', 'CS', strf_save_ver());
 cd(currentPath);
 % ========================================================
 % END OF CAL_AUTOCORR

@@ -9,7 +9,7 @@ for ii = 1:length(DS)
     filename = fullfile(outputPath,'spike_hashes',dsname);
     if ~exist(filename,'file')
         this_hash = df_checksum_from_file(DS{ii}.respfiles);
-        save(filename,'this_hash');
+        save(filename,'this_hash', strf_save_ver());
     else
         load(filename);
     end

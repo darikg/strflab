@@ -131,7 +131,7 @@ function [wholeStim, groupIndex, stimInfo, params] = preprocSound(audioWaveforms
             stim.stimLength = size(stim.tfrep.spec, 2) / stimSampleRate;
             stim.sampleRate = stimSampleRate;
             if params.cache
-               save(stimOutputFname, 'stim');
+               save(stimOutputFname, 'stim', strf_save_ver());
             end
         end        
         stimStructs{k} = stim;

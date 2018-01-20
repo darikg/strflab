@@ -4,9 +4,9 @@ function df_add_record_to_cache(cached_dir,the_checksum,time_saved,function_name
 %  the (long) output of the calculation is stored as well.
 
 outfile = df_promote_cache(the_checksum,cached_dir);  %If it doesn't exist, creates a file to keep track of how useful this calculation is.
-save(outfile,'time_saved','function_name','-APPEND');
+save(outfile,'time_saved','function_name','-APPEND', strf_save_ver());
 load(outfile);
-save(data_filename,'time_saved','function_name','space_needed','-APPEND');
+save(data_filename,'time_saved','function_name','space_needed','-APPEND', strf_save_ver());
 
 %  Old version:
 %function active = df_add_record_to_cache(cached_dir,maxsize,the_checksum,time_saved,space_needed);

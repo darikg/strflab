@@ -148,7 +148,7 @@ if use_more_memory
         if ~use_alien_space
             original_subspace_tol_vals = Tol_val;
             original_subspace_checksum = checksum_usv;
-            save(fullfile(outputPath,'subspace.mat'),'original_subspace_tol_vals','original_subspace_checksum');
+            save(fullfile(outputPath,'subspace.mat'),'original_subspace_tol_vals','original_subspace_checksum', strf_save_ver());
         end
     else
         [big_u,big_s,big_v,max_stimnorm,big_stim_mat,max_s] = df_make_big_usv(nb,nf,fstim); 
@@ -232,14 +232,14 @@ for itol=1:ntols
 
     sfilename = sprintf('strfResult_Tol%d.mat',itol);
     strfFiles = fullfile(outputPath,sfilename);
-    save(strfFiles, 'STRF_Cell', 'STRFJN_Cell', 'STRFJNstd_Cell');
+    save(strfFiles, 'STRF_Cell', 'STRFJN_Cell', 'STRFJNstd_Cell', strf_save_ver());
     if cache_crosscorr  %  You could get a checksum directly from the STRF, but this is much faster and just as unique.
         strf_checksum = checksum_this_tol;
         posslash = findstr(strfFiles,filesep);
         the_dir = strfFiles(1:(posslash(end)));
         the_name = strfFiles((posslash(end)+1):end);
         strf_hash_filename = [the_dir 'hash_of_' the_name];
-        save(strf_hash_filename,'strf_checksum');
+        save(strf_hash_filename,'strf_checksum', strf_save_ver());
     end
     clear STRF_Cell STRFJN_Cell STRFJNstd_Cell
 end

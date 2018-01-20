@@ -252,7 +252,7 @@ else
     Avg_psth_out = whole_psth;
 end
 Avg_psth = whole_psth;
-save(fullfile(outputPath,'stim_avg.mat'), 'stim_avg', 'Avg_psth','constmeanrate');
+save(fullfile(outputPath,'stim_avg.mat'), 'stim_avg', 'Avg_psth','constmeanrate', strf_save_ver());
 
 % ========================================================
 % Junli: 6/30/2005

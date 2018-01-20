@@ -15,7 +15,7 @@ for ii = 1:length(DS)
         end
 
         this_hash = df_checksum_from_file(DS{ii}.stimfiles);
-        save(filename,'this_hash');
+        save(filename,'this_hash', strf_save_ver());
     else
         load(filename);
     end

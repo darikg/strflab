@@ -102,7 +102,7 @@ for itol=1:ntols
     fprintf('Done calculation of  STRF for tol_value: %g\n', tol);
 
     sfilename = sprintf('strfResult_Tol%d.mat',itol);
-    save(fullfile(outputPath,sfilename), 'STRF_Cell', 'STRFJN_Cell', 'STRFJNstd_Cell');
+    save(fullfile(outputPath,sfilename), 'STRF_Cell', 'STRFJN_Cell', 'STRFJNstd_Cell', strf_save_ver());
 
     clear STRF_Cell STRFJN_Cell STRFJNstd_Cell
 

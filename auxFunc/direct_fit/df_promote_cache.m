@@ -10,7 +10,7 @@ last_used = now;  %last_used is 1 + the number of days (plus the fraction of the
 
 if exist(outfile,'file')
     try  %  If another machine tries to update this metadata at the same time (causing an error), who cares?  The correct date is still set.
-        save(outfile,'last_used','-APPEND');
+        save(outfile,'last_used','-APPEND', strf_save_ver());
     catch
         disp('Had trouble updating a "last_used" variable in the cache metadata.  Is another process trying to update it too?');
         disp('Unless this message appears all the time, it''s not a problem.')
@@ -22,7 +22,7 @@ else
     time_saved = .0000012345;
     try  %  If another machine tries to update this metadata at the same time (causing an error), who cares?  The correct date is still set.
     
-    save(outfile,'last_used','space_needed','time_saved');
+    save(outfile,'last_used','space_needed','time_saved', strf_save_ver());
         catch
         disp('Had trouble creating a file in the cache metadata.  Is another process trying to update it too?');
         disp('Unless this message appears all the time, it''s not a problem.')
