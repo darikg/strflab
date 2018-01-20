@@ -2,18 +2,17 @@ function input = df_concat_for_checksum(varargin)
 testnum = 0;
 done = 0;
 while done == 0
-    tempfile = fullfile(getenv('TMP'),['Temp_hashing_name_' num2str(testnum) '.tmp']);
+    tempfile = [tempname() '.tmp'];
     if ~exist(tempfile,'file')
         %save(tempfile,'varargin', strf_save_ver());
         A = ver('MATLAB');
         A = A.Version;
         A = str2num(A(1));
         if A > 6
-            to_eval = ['save ' tempfile ' varargin -V6'];
+            save(tempfile, 'varargin', '-V6');
         else
-            to_eval = ['save ' tempfile ' varargin'];
+            save(tempfile, 'varargin');
         end
-        eval(to_eval);
         fid = fopen(tempfile);
         input = fread(fid,inf,'uint8');
         fclose(fid);
