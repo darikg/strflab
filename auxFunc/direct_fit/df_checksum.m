@@ -3,7 +3,7 @@ function out = df_checksum(varargin)
 %  Note: this is NOT a hash; it does not have crypto strength.  BUT it's
 %  still pretty sensitive on its inputs, so it will do for our purposes.
 
-if exist('/usr/bin/openssl','file')
+if false %exist('/usr/bin/openssl','file')
     out = df_checksum_with_md5(varargin);
 else
 
